@@ -33,6 +33,7 @@ Module db
             cmd.Dispose()
             MsgBox("Data Tersimpan", MsgBoxStyle.Information, "Simpan")
         Catch ex As Exception
+            MessageBox.Show("Tidak bisa menyimpan data ke Database " & ex.Message, "Error")
         End Try
     End Sub
 End Module

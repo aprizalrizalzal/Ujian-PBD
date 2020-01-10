@@ -6,9 +6,9 @@ Public Class FormData
     Private Sub DataGridViewData_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewData.CellClick
         isiTextBox()
         aktif()
-        If CheckBoxUpdate.CheckState = CheckState.Unchecked Then
-            CheckBoxUpdate.CheckState = CheckState.Checked
-        End If
+        CheckBoxAdd.Enabled = False
+        CheckBoxUpdate.Enabled = True
+        CheckBoxDelete.Enabled = True
     End Sub
     Private Sub isiTextBox()
         Dim i As Integer
@@ -21,6 +21,9 @@ Public Class FormData
     End Sub
     Private Sub Bersihkan()
         DataAdd = False
+        CheckBoxAdd.Enabled = True
+        CheckBoxUpdate.Enabled = False
+        CheckBoxDelete.Enabled=False
         TextBoxNama.Text = ""
         TextBoxAlamat.Text = ""
         TextBoxNoHp.Text = ""
@@ -35,6 +38,8 @@ Public Class FormData
         da.Fill(ds, "data")
         DataGridViewData.DataSource = ds.Tables("data")
         DataGridViewData.Enabled = True
+        CheckBoxUpdate.Enabled = False
+        CheckBoxDelete.Enabled = False
         Refresh()
     End Sub
 
@@ -59,58 +64,64 @@ Public Class FormData
 
 
     Private Sub deldata()
-        If DataID <> "" Then
-            Dim sql As String
-            Dim pesan As Integer
+        If TextBoxNama.Text = "" Or TextBoxAlamat.Text = "" Or TextBoxNoHp.Text = "" Then
+            MsgBox("Data Kosong", MsgBoxStyle.Information, "Maaf")
+        Else
+            If DataID <> "" Then
+                Dim sql As String
+                Dim pesan As Integer
 
-            pesan = MsgBox("Apakah anda yakin akan menghapus Data ID " & DataID, vbExclamation + vbYesNo, "Perhatian")
-            If pesan = vbNo Then Exit Sub
+                pesan = MsgBox("Apakah anda yakin akan menghapus Data ID " & DataID, vbExclamation + vbYesNo, "Perhatian")
+                If pesan = vbNo Then Exit Sub
 
-            sql = "DELETE FROM [accountUser] WHERE ID = " & DataID
+                sql = "DELETE FROM [data] WHERE ID = " & DataID
 
-            jalankanSql(sql)
-            Me.Cursor = Cursors.WaitCursor
-            Bersihkan()
-            isiGridData()
-            Me.Cursor = Cursors.Default
+                jalankanSql(sql)
+                Me.Cursor = Cursors.WaitCursor
+                Bersihkan()
+                isiGridData()
+                Me.Cursor = Cursors.Default
+            End If
         End If
-    End Sub
-
-    Private Sub ButtonDelete_Click(sender As Object, e As EventArgs) Handles ButtonDelete.Click
-        deldata()
-        isiGridData()
     End Sub
 
     Private Sub ButtonClear_Click(sender As Object, e As EventArgs) Handles ButtonClear.Click
         Bersihkan()
+        aktif()
+        FormDataAccount_Load(sender, e)
+        TextBoxNama.Focus()
     End Sub
 
     Private Sub ButtonSave_Click(sender As Object, e As EventArgs) Handles ButtonSave.Click
-        data()
+        If CheckBoxAdd.CheckState = CheckState.Unchecked And CheckBoxUpdate.CheckState = CheckState.Unchecked Then
+            deldata()
+        Else
+            data()
+        End If
+        aktif()
         isiGridData()
-        FormDataAccount_Load(sender, e)
-
     End Sub
     Private Sub aktif()
-        CheckBoxAdd.Enabled = True
-        CheckBoxUpdate.Enabled = True
-        TextBoxNama.Enabled = True
-        TextBoxAlamat.Enabled = True
-        TextBoxNoHp.Enabled = True
         CheckBoxAdd.CheckState = CheckState.Unchecked
         CheckBoxUpdate.CheckState = CheckState.Unchecked
+        CheckBoxDelete.CheckState = CheckState.Unchecked
     End Sub
 
     Private Sub FormDataAccount_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         isiGridData()
+        aktif()
+        ButtonSave.Enabled = False
     End Sub
 
     Private Sub CheckBoxAdd_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxAdd.CheckedChanged
         If CheckBoxAdd.CheckState = CheckState.Checked Then
             DataAdd = True
             CheckBoxUpdate.Enabled = False
+            CheckBoxDelete.Enabled = False
+            ButtonSave.Enabled = True
         Else
             CheckBoxUpdate.Enabled = True
+            CheckBoxDelete.Enabled = True
         End If
 
     End Sub
@@ -118,11 +129,24 @@ Public Class FormData
     Private Sub CheckBoxUpdate_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxUpdate.CheckedChanged
         If CheckBoxUpdate.CheckState = CheckState.Checked Then
             DataAdd = False
-            CheckBoxAdd.Enabled = False
+            CheckBoxDelete.Enabled = False
+            ButtonSave.Enabled = True
         Else
-            aktif()
-            CheckBoxAdd.Enabled = True
+            CheckBoxDelete.Enabled = True
         End If
     End Sub
 
+    Private Sub TextBoxNoHp_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxNoHp.KeyPress
+        e.Handled = Not (Char.IsDigit(e.KeyChar) Or e.KeyChar = Chr(Keys.Back))
+    End Sub
+
+    Private Sub CheckBoxDelete_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxDelete.CheckedChanged
+        If CheckBoxDelete.CheckState = CheckState.Checked Then
+            DataAdd = False
+            CheckBoxUpdate.Enabled = False
+            ButtonSave.Enabled = True
+        Else
+            CheckBoxUpdate.Enabled = True
+        End If
+    End Sub
 End Class

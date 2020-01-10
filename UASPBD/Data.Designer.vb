@@ -24,6 +24,7 @@ Partial Class FormData
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormData))
         Me.GroupBoxBtn = New System.Windows.Forms.GroupBox()
+        Me.CheckBoxDelete = New System.Windows.Forms.CheckBox()
         Me.CheckBoxUpdate = New System.Windows.Forms.CheckBox()
         Me.CheckBoxAdd = New System.Windows.Forms.CheckBox()
         Me.TextBoxNoHp = New System.Windows.Forms.TextBox()
@@ -32,7 +33,6 @@ Partial Class FormData
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TextBoxNama = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.ButtonDelete = New System.Windows.Forms.Button()
         Me.ButtonSave = New System.Windows.Forms.Button()
         Me.ButtonClear = New System.Windows.Forms.Button()
         Me.GroupBoxDataAccount = New System.Windows.Forms.GroupBox()
@@ -44,6 +44,7 @@ Partial Class FormData
         '
         'GroupBoxBtn
         '
+        Me.GroupBoxBtn.Controls.Add(Me.CheckBoxDelete)
         Me.GroupBoxBtn.Controls.Add(Me.CheckBoxUpdate)
         Me.GroupBoxBtn.Controls.Add(Me.CheckBoxAdd)
         Me.GroupBoxBtn.Controls.Add(Me.TextBoxNoHp)
@@ -52,7 +53,6 @@ Partial Class FormData
         Me.GroupBoxBtn.Controls.Add(Me.Label2)
         Me.GroupBoxBtn.Controls.Add(Me.TextBoxNama)
         Me.GroupBoxBtn.Controls.Add(Me.Label1)
-        Me.GroupBoxBtn.Controls.Add(Me.ButtonDelete)
         Me.GroupBoxBtn.Controls.Add(Me.ButtonSave)
         Me.GroupBoxBtn.Controls.Add(Me.ButtonClear)
         Me.GroupBoxBtn.Dock = System.Windows.Forms.DockStyle.Top
@@ -63,6 +63,17 @@ Partial Class FormData
         Me.GroupBoxBtn.TabIndex = 3
         Me.GroupBoxBtn.TabStop = False
         '
+        'CheckBoxDelete
+        '
+        Me.CheckBoxDelete.AutoSize = True
+        Me.CheckBoxDelete.Location = New System.Drawing.Point(186, 99)
+        Me.CheckBoxDelete.Name = "CheckBoxDelete"
+        Me.CheckBoxDelete.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.CheckBoxDelete.Size = New System.Drawing.Size(57, 17)
+        Me.CheckBoxDelete.TabIndex = 12
+        Me.CheckBoxDelete.Text = "Delete"
+        Me.CheckBoxDelete.UseVisualStyleBackColor = True
+        '
         'CheckBoxUpdate
         '
         Me.CheckBoxUpdate.AutoSize = True
@@ -70,7 +81,7 @@ Partial Class FormData
         Me.CheckBoxUpdate.Name = "CheckBoxUpdate"
         Me.CheckBoxUpdate.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.CheckBoxUpdate.Size = New System.Drawing.Size(61, 17)
-        Me.CheckBoxUpdate.TabIndex = 16
+        Me.CheckBoxUpdate.TabIndex = 8
         Me.CheckBoxUpdate.Text = "Update"
         Me.CheckBoxUpdate.UseVisualStyleBackColor = True
         '
@@ -81,7 +92,7 @@ Partial Class FormData
         Me.CheckBoxAdd.Name = "CheckBoxAdd"
         Me.CheckBoxAdd.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.CheckBoxAdd.Size = New System.Drawing.Size(45, 17)
-        Me.CheckBoxAdd.TabIndex = 15
+        Me.CheckBoxAdd.TabIndex = 7
         Me.CheckBoxAdd.Text = "Add"
         Me.CheckBoxAdd.UseVisualStyleBackColor = True
         '
@@ -89,7 +100,7 @@ Partial Class FormData
         '
         Me.TextBoxNoHp.Location = New System.Drawing.Point(68, 73)
         Me.TextBoxNoHp.Name = "TextBoxNoHp"
-        Me.TextBoxNoHp.Size = New System.Drawing.Size(162, 20)
+        Me.TextBoxNoHp.Size = New System.Drawing.Size(175, 20)
         Me.TextBoxNoHp.TabIndex = 6
         '
         'Label3
@@ -106,7 +117,7 @@ Partial Class FormData
         '
         Me.TextBoxAlamat.Location = New System.Drawing.Point(69, 47)
         Me.TextBoxAlamat.Name = "TextBoxAlamat"
-        Me.TextBoxAlamat.Size = New System.Drawing.Size(221, 20)
+        Me.TextBoxAlamat.Size = New System.Drawing.Size(265, 20)
         Me.TextBoxAlamat.TabIndex = 4
         '
         'Label2
@@ -123,7 +134,7 @@ Partial Class FormData
         '
         Me.TextBoxNama.Location = New System.Drawing.Point(68, 21)
         Me.TextBoxNama.Name = "TextBoxNama"
-        Me.TextBoxNama.Size = New System.Drawing.Size(270, 20)
+        Me.TextBoxNama.Size = New System.Drawing.Size(206, 20)
         Me.TextBoxNama.TabIndex = 2
         '
         'Label1
@@ -136,31 +147,22 @@ Partial Class FormData
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Nama"
         '
-        'ButtonDelete
-        '
-        Me.ButtonDelete.Location = New System.Drawing.Point(263, 122)
-        Me.ButtonDelete.Name = "ButtonDelete"
-        Me.ButtonDelete.Size = New System.Drawing.Size(75, 25)
-        Me.ButtonDelete.TabIndex = 11
-        Me.ButtonDelete.Text = "Delete"
-        Me.ButtonDelete.UseVisualStyleBackColor = True
-        '
         'ButtonSave
         '
-        Me.ButtonSave.Location = New System.Drawing.Point(69, 122)
+        Me.ButtonSave.Location = New System.Drawing.Point(68, 122)
         Me.ButtonSave.Name = "ButtonSave"
         Me.ButtonSave.Size = New System.Drawing.Size(75, 25)
-        Me.ButtonSave.TabIndex = 10
-        Me.ButtonSave.Text = "Save"
+        Me.ButtonSave.TabIndex = 9
+        Me.ButtonSave.Text = "Yes"
         Me.ButtonSave.UseVisualStyleBackColor = True
         '
         'ButtonClear
         '
-        Me.ButtonClear.Location = New System.Drawing.Point(182, 122)
+        Me.ButtonClear.Location = New System.Drawing.Point(259, 122)
         Me.ButtonClear.Name = "ButtonClear"
         Me.ButtonClear.Size = New System.Drawing.Size(75, 25)
-        Me.ButtonClear.TabIndex = 7
-        Me.ButtonClear.Text = "Clear"
+        Me.ButtonClear.TabIndex = 11
+        Me.ButtonClear.Text = "Refresh"
         Me.ButtonClear.UseVisualStyleBackColor = True
         '
         'GroupBoxDataAccount
@@ -187,7 +189,7 @@ Partial Class FormData
         Me.DataGridViewData.Name = "DataGridViewData"
         Me.DataGridViewData.ReadOnly = True
         Me.DataGridViewData.Size = New System.Drawing.Size(352, 154)
-        Me.DataGridViewData.TabIndex = 4
+        Me.DataGridViewData.TabIndex = 12
         '
         'FormData
         '
@@ -214,10 +216,10 @@ Partial Class FormData
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents TextBoxNama As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents ButtonDelete As System.Windows.Forms.Button
     Friend WithEvents ButtonSave As System.Windows.Forms.Button
     Friend WithEvents ButtonClear As System.Windows.Forms.Button
     Friend WithEvents GroupBoxDataAccount As System.Windows.Forms.GroupBox
     Public WithEvents DataGridViewData As System.Windows.Forms.DataGridView
+    Friend WithEvents CheckBoxDelete As System.Windows.Forms.CheckBox
 
 End Class
