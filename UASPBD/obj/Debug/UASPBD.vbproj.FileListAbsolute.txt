@@ -1,0 +1,10 @@
+c:\users\apriz\documents\visual studio 2012\Projects\UASPBD\UASPBD\bin\Debug\UASPBD.exe.config
+c:\users\apriz\documents\visual studio 2012\Projects\UASPBD\UASPBD\bin\Debug\UASPBD.exe
+c:\users\apriz\documents\visual studio 2012\Projects\UASPBD\UASPBD\bin\Debug\UASPBD.pdb
+c:\users\apriz\documents\visual studio 2012\Projects\UASPBD\UASPBD\bin\Debug\UASPBD.xml
+c:\users\apriz\documents\visual studio 2012\Projects\UASPBD\UASPBD\obj\Debug\UASPBD.FormData.resources
+c:\users\apriz\documents\visual studio 2012\Projects\UASPBD\UASPBD\obj\Debug\UASPBD.Resources.resources
+c:\users\apriz\documents\visual studio 2012\Projects\UASPBD\UASPBD\obj\Debug\UASPBD.vbproj.GenerateResource.Cache
+c:\users\apriz\documents\visual studio 2012\Projects\UASPBD\UASPBD\obj\Debug\UASPBD.exe
+c:\users\apriz\documents\visual studio 2012\Projects\UASPBD\UASPBD\obj\Debug\UASPBD.xml
+c:\users\apriz\documents\visual studio 2012\Projects\UASPBD\UASPBD\obj\Debug\UASPBD.pdb
